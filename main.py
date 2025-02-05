@@ -31,6 +31,15 @@ async def mem_handler(message: types.Message):
 
 
 @dp.message_handler()
+async def echo_handler(message: types.Message):
+    try:
+        number = float(message.text)
+        await message.answer(str(number ** 2))
+    except ValueError:
+        await message.answer(message.text)
+        
+    
+@dp.message_handler()
 async def echo_handler(message:types.Message):
     await message.answer(message.text)
 
