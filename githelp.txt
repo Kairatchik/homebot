@@ -1,0 +1,53 @@
+Команды на один раз для устройства ПК\Ноут
+git config --global user.name "Your name"
+git config --global user.email "your-email@example.com"
+
+Команды на один раз для проекта
+git init
+git remote add origin https://github.com/arzy-50-2/OOP-50-2.git
+
+Команды которые часта пишутся в проекте
+git add .    |  Команда копирует и сохраняет в буфер ( Невидемый )
+git commit -m "commit message"    | Команда сохраняет изменения в файле .git
+git push origin master | Команда отправляет изменения в репозиторий и сохраняет его там
+git branch   | Команда для просмотра списка веток
+git status   | Команда для просмотра состояния проекта или просмотра изменений
+git clone https://github.com/arzy-50-2/OOP-50-2.git | Команда для клонирования репозитория
+git pull origin master | Команда для получения изменений из репозитория
+-----------------------------------------------------------------------------
+Команда для удаления директории с файлами и репозитория
+git rm -r --cached .idea
+
+Базовые команды терминала
+clear | Очистка экрана
+cd ../ | Переход на верхний уровень вложенности
+cd ~ | Переход в корневой каталог
+cd name | Переход в каталог name
+ls | Просмотр содержимого каталога
+ls -a | Просмотр содержимого каталога с показом скрытых файлов
+mkdir name | Создание каталога name
+rmdir name | Удаление каталога name
+rm name | Удаление файла name
+touch name - name.txt | Создание пустого файла name
+cat name | Просмотр содержимого файла name
+nano | Просмотр содержимого файлов в текущем каталоге
+pwd | Просмотр текущего каталога
+
+
+
+
+source venv/bin/activate
+venv\Scripts\activate
+
+
+
+git rebase -i HEAD~2
+
+pick added: requremetns.txt
+drop update: requremetns
+
+
+control + s сохранить изменения
+control + х выйти
+
+git push origin master
