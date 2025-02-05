@@ -48,6 +48,6 @@ drop update: requremetns
 
 
 control + s сохранить изменения
-control + х выйти
+control + х выйтиb
 
-git push origin master
+git push origin master 
