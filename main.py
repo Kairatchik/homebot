@@ -1,51 +1,28 @@
 # main.py
-from aiogram import types, Dispatcher, Bot, executor
-from decouple import config
+from aiogram import executor
 import logging
-
-token = config("TOKEN")
-
-bot = Bot(token=token)
-dp = Dispatcher(bot)
+from handlers import commands, echo, quiz
+from config import dp, Admins, bot
 
 
-Admins = [904268457, ]
+async def on_startup(_):
+    for admin in Admins:
+        await bot.send_message(chat_id=admin, text='Бот включен!')
 
 
-@dp.message_handler(commands='start')
-async def start_handler(message: types.Message):
-    print('Обработчик старта')
-    await bot.send_message(chat_id=message.from_user.id,
-                           text=f'Hello {message.from_user.first_name}\n'
-                                f'Твой телеграм ID - {message.from_user.id}\n')
-
-    await message.answer(text='Привет')
-
-@dp.message_handler(commands="mem")
-async def mem_handler(message: types.Message):
-    # photo = open('media/img.png', 'rb')
-
-    with open('media/img.png', 'rb') as photo:
-        await bot.send_photo(chat_id=message.from_user.id,
-                             photo=photo)
+async def on_shutdown(_):
+    for admin in Admins:
+        await bot.send_message(chat_id=admin, text='Бот выключен!')
 
 
-@dp.message_handler()
-async def echo_handler(message: types.Message):
-    try:
-        number = float(message.text)
-        await message.answer(str(number ** 2))
-    except ValueError:
-        await message.answer(message.text)
-        
-    
-@dp.message_handler()
-async def echo_handler(message:types.Message):
-    await message.answer(message.text)
+commands.register_handlers(dp)
+quiz.register_hundlers(dp)
 
 
+
+echo.register_handlers(dp)
 
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
-    executor.start_polling(dp, skip_updates=True)
+    executor.start_polling(dp, skip_updates=True, on_startup=on_startup, on_shutdown=on_shutdown)
