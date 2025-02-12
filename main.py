@@ -3,6 +3,7 @@ from aiogram import executor
 import logging
 from handlers import commands, echo, quiz
 from config import dp, Admins, bot
+from handlers import commands, echo, quiz, FSM_registration
 
 
 async def on_startup(_):
@@ -17,7 +18,7 @@ async def on_shutdown(_):
 
 commands.register_handlers(dp)
 quiz.register_hundlers(dp)
-
+FSM_registration.register_handlers_fsm(dp)
 
 
 echo.register_handlers(dp)
